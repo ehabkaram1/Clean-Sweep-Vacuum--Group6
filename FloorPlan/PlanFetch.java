@@ -1,5 +1,8 @@
 package FloorPlan;
 
+import java.io.File;
+import java.io.IOException;
+
 public class PlanFetch {
     // Function to fetch and parse the floor plan from a JSON file
     public static FloorPlan fetchFloorPlan(String filePath) {
@@ -33,4 +36,4 @@ public class PlanFetch {
         }
     }
 }
-}
+

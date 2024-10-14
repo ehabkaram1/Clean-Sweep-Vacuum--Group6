@@ -1,9 +1,9 @@
-package FloorPlan;
+package ChargingStation;
 
 public class Main {
     public static void main(String[] args) {
         // Create a 5x5 floor plan
-        FloorPlan floorPlan = new FloorPlan(5, 5);
+        ChargingStation floorPlan = new ChargingStation(5, 5);
 
         // Starting position of the robot
         int startX = 0, startY = 0;

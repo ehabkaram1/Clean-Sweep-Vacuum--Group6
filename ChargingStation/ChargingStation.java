@@ -1,9 +1,9 @@
-package FloorPlan;
+package ChargingStation;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class FloorPlan {
+public class ChargingStation {
     private Cell[][] grid; // 2D array representing the floor plan (cells include charging stations and obstacles)
     
     // Directions to move in the grid (right, left, down, up)
@@ -11,7 +11,7 @@ public class FloorPlan {
         {1, 0}, {-1, 0}, {0, 1}, {0, -1}
     };
 
-    public FloorPlan(int rows, int cols) {
+    public ChargingStation(int rows, int cols) {
         grid = new Cell[rows][cols];
         initializeGrid(rows, cols); // Initialize the grid with default values (you can customize this)
     }
