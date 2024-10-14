@@ -13,7 +13,7 @@ public class ChargingStation {
 
     public ChargingStation(int rows, int cols) {
         grid = new Cell[rows][cols];
-        initializeGrid(rows, cols); // Initialize the grid with default values (you can customize this)
+        initializeGrid(rows, cols); // Initialize the grid with default values
     }
 
     // Initialize grid with default values (bare floor, no obstacles, no charging station)
@@ -23,7 +23,7 @@ public class ChargingStation {
                 grid[i][j] = new Cell(i, j, "bare_floor", false, false); // Default: no charging station, no obstacle
             }
         }
-        // Example: Manually set a charging station at a specific location
+        // Manually set a charging station at a specific location
         grid[2][3].setChargingStation(true);
     }
 
