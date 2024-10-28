@@ -1,6 +1,6 @@
 package FloorCell;
  
-import FloorPLan.TileType;
+import FLoorPLan.TileType;
 
 public class Cell {
 

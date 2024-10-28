@@ -1,4 +1,4 @@
-package src.main.java.FloorPLan;
+package src.main.java.FLoorPLan;
 
 public class FloorTile {
     
