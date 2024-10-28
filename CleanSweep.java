@@ -2,6 +2,8 @@ public class CleanSweep {
     private int x;
     private int y;
     private Grid grid;
+    private int dirtCapacity = 0; // Starting with an empty bin
+    private final int MAX_CAPACITY = 50; // Max dirt capacity
 
     public CleanSweep(Grid grid) {
         this.grid = grid;
@@ -10,15 +12,20 @@ public class CleanSweep {
     }
 
     public void move(String direction) {
+        if (dirtCapacity >= MAX_CAPACITY) {
+            System.out.println("Cannot move. 'Empty Me' indicator is on.");
+            return; // Stop movement if the capacity is full
+        }
+
         int newX = x, newY = y;
-        
+
         switch (direction) {
             case "UP": newY -= 1; break;
             case "DOWN": newY += 1; break;
             case "LEFT": newX -= 1; break;
             case "RIGHT": newX += 1; break;
         }
-        
+
         if (isValidMove(newX, newY)) {
             x = newX;
             y = newY;
@@ -36,8 +43,17 @@ public class CleanSweep {
     }
 
     private void clean() {
-        grid.cleanCell(x, y);
-        System.out.println("Cleaned cell at (" + x + ", " + y + ")");
+        if (dirtCapacity < MAX_CAPACITY) {
+            grid.cleanCell(x, y);
+            dirtCapacity++; // Increase dirt capacity by 1 unit
+            System.out.println("Cleaned cell at (" + x + ", " + y + "). Current dirt capacity: " + dirtCapacity + "/" + MAX_CAPACITY);
+
+            if (dirtCapacity >= MAX_CAPACITY) {
+                System.out.println("'Empty Me' indicator is on. Please empty the vacuum.");
+            }
+        } else {
+            System.out.println("Dirt capacity full. Cannot clean further.");
+        }
     }
 
     public void navigate() {
