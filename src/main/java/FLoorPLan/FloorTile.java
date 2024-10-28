@@ -78,3 +78,74 @@ public class FloorTile implements Serializable {
     accessable = true;
     chargingStation = false;
   }
+
+  public FloorTile(
+      int y,
+      int x,
+      int dirtAmount,
+      boolean isAccessible,
+      boolean isChargingStation,
+      TileType type) {
+    north = null;
+    south = null;
+    east = null;
+    west = null;
+    _x = x;
+    _y = y;
+    surfaceType = type;
+    unitsOfDirt = dirtAmount;
+    isClean = true;
+    if (unitsOfDirt > 0) {
+      isClean = false;
+    }
+    accessable = isAccessible;
+    chargingStation = isChargingStation;
+  }
+
+  public void setAccessable(boolean f) {
+    accessable = f;
+  }
+
+  public boolean getAccessable() {
+    return accessable;
+  }
+
+  public void setSurfaceType(TileType type) {
+    surfaceType = type;
+  }
+
+  public TileType getSurfaceType() {
+    return surfaceType;
+  }
+
+  public double getBatteryConsumption() {
+    TileType temp = getSurfaceType();
+    return Double.valueOf(temp.getValue());
+  }
+
+  public void setClean(boolean clean) {
+    isClean = clean;
+  }
+
+  public boolean getClean() {
+    return isClean;
+  }
+
+  public void setUnitsOfDirt(int units) {
+    if (unitsOfDirt > 0) {
+      isClean = false;
+    }
+    unitsOfDirt = units;
+  }
+
+  public int getUnitsOfDirt() {
+    return unitsOfDirt;
+  }
+
+  public void setChargeStation(boolean chargeStation) {
+    chargingStation = chargeStation;
+  }
+
+  public boolean getChargeStation() {
+    return chargingStation;
+  }
