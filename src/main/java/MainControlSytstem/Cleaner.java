@@ -38,3 +38,114 @@ public class Cleaner {
   private boolean cleaningComplete; // the cleaner can check if the map is complete
 
   private boolean isOnTheWay2Charging = false;
+
+  // constructor
+  public Cleaner() throws IOException {
+    sensorMap = new CustomLinkedList();
+    cleaningComplete = false;
+    pcl = PowerConsumptionLog.getInstance();
+    currBattery = MAX_BATTERY_POWER;
+    currDirtCapacity = MAX_DIRT_CAPACITY;
+  }
+
+  // getters/setters
+  public boolean getCleaningComplete() {
+    return cleaningComplete;
+  }
+
+  public double getCurrBattery() {
+    return currBattery;
+  }
+
+  public void setCurrBattery(double cb) {
+    currBattery = cb;
+  }
+
+  public void setCurrDirtCapacity(int cdc) {
+    currDirtCapacity = cdc;
+  }
+
+  public FloorTile getCurrNode() {
+    return currNode != null ? currNode : new FloorTile(0, 0);
+  }
+
+  public void setCurrNode(FloorTile n) {
+    currNode = n;
+    this.currentMap[n.get_x()][n.get_y()] = copyFloorTile(n);
+    cleanerHistory.add(n);
+  }
+
+  public CustomLinkedList getSensorMap() {
+    // method used to retrieve private sensor map
+    return this.sensorMap;
+  }
+
+  public void setSensorMap(CustomLinkedList testMap) {
+    // method used to set a sensor map to the cleaner, useful for setting custom maps in tests
+    this.sensorMap = testMap;
+    setCurrNode(this.sensorMap.getHead());
+  }
+
+  public boolean isAtCapacity() {
+    return atCapacity;
+  }
+
+  public boolean isAlmostAtCapacity() {
+    return almostAtCapacity;
+  }
+
+  public String getCleanerStatus() {
+    return currStatus;
+  }
+
+  public void setCleanerStatus(String newStatus) {
+    currStatus = newStatus;
+  }
+
+  // check if map is completely cleaned and visited
+  private boolean checkMapCleaningComplete() {
+    // this method checks if the sensor map is the same as the current map and that all nodes are
+    // cleaned and visited if possible
+    FloorTile currSensorNode = this.sensorMap.getHead(); // get sensor map head
+    boolean loopCheck = true; // loop checker to determine if all information is correct
+
+    // check for nulls?
+
+    while (currSensorNode != null) { // loop through the sensorNodes (Y-Axis)
+      if (currSensorNode.get_y() % 2
+          == 0) { // depending of row number move east if even, move west if odd
+        while (currSensorNode.east
+            != null) { // loop through the sensorNodes (X-Axis) east if row is even
+          loopCheck = checkNodeCleanAndVisited(currSensorNode);
+          if (!loopCheck) {
+            break;
+          }
+          currSensorNode = currSensorNode.east; // move checker east
+        }
+        loopCheck = checkNodeCleanAndVisited(currSensorNode);
+      } else {
+        while (currSensorNode.west
+            != null) { // loop through the sensorNodes (X-Axis) west if row is odd
+          loopCheck = checkNodeCleanAndVisited(currSensorNode);
+          if (!loopCheck) {
+            break;
+          }
+          currSensorNode = currSensorNode.west; // move checker west
+        }
+        loopCheck = checkNodeCleanAndVisited(currSensorNode);
+      }
+
+      if (!loopCheck) {
+        break;
+      }
+
+      if (currSensorNode.south
+          != null) { // after looping all the way east/west then move south 1 row if not empty
+        currSensorNode = currSensorNode.south;
+      } else {
+        break;
+      }
+    }
+
+    return loopCheck;
+  }
