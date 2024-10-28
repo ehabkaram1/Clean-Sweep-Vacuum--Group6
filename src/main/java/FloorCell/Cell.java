@@ -12,5 +12,9 @@ public class Cell {
   private TileType surface;
   private int dirtAmount;
 
+  public Cell(Integer dirtAmount, TileType surfaceType) {
+    this.dirtAmount = dirtAmount;
+    this.surface = surfaceType;
+  }
   
 }
