@@ -1,9 +1,31 @@
 package src.main.java.FloorPlan;
 
+import java.util.HashMap;
 
-import java.io.File;
-import java.io.IOException;
+public enum TileType {
+  BARE(1),
+  LOWPILE(2),
+  HIGHPILE(3);
 
-public class TileType {
-    
+  // abbr indicates how many units of charge this surface will consume.
+  private int value;
+  private static HashMap<Object, Object> map = new HashMap<>();
 
+  private TileType(int abb) {
+    value = abb;
+  }
+
+  static {
+    for (TileType tileType : TileType.values()) {
+      map.put(tileType.value, tileType);
+    }
+  }
+
+  public int getValue() {
+    return value;
+  }
+
+  public static TileType valueOf(int tileType) {
+    return (TileType) map.get(tileType);
+  }
+}
