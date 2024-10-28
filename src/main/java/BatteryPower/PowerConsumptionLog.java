@@ -1,6 +1,6 @@
 package BatteryPower;
 
-import FLoorPLan.FloorTile;
+import floorPlan.FloorTile;
 
 import java.io.BufferedWriter;
 import java.io.File;
