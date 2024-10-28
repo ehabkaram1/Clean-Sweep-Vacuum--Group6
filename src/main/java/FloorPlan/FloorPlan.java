@@ -1,4 +1,4 @@
-package FloorPlan;
+
 
 public class FloorPlan {
     private int[][] dirtMap; // 2D array representing dirt levels at each cell
