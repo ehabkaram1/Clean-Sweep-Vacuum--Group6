@@ -16,5 +16,14 @@ public class Cell {
     this.dirtAmount = dirtAmount;
     this.surface = surfaceType;
   }
+
+  public int getDirtAmount() {
+    return dirtAmount;
+  }
+
+  public TileType getSurface() {
+    return surface;
+  }
+
   
 }
