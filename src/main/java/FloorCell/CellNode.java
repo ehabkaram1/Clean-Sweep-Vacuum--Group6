@@ -17,4 +17,16 @@ public class CellNode {
   private int dirtAmount;
   private int[] coordinate = new int[2];
 
+  public CellNode(
+      int x, int y, SurfaceType sur, int dirt, SideType n, SideType s, SideType w, SideType e) {
+    coordinate[0] = x;
+    coordinate[1] = y;
+    surface = sur;
+    dirtAmount = dirt;
+    sideN = n;
+    sideS = s;
+    sideW = w;
+    sideE = e;
+  }
+
 }
