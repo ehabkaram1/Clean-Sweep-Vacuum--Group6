@@ -58,8 +58,28 @@ public class CleanSweep {
 
     public void navigate() {
         String[] directions = {"UP", "DOWN", "LEFT", "RIGHT"};
+        boolean hasMoved = false;
+
         for (String direction : directions) {
-            move(direction);
+            int newX = x;
+            int newY = y;
+
+            switch (direction) {
+                case "UP" -> newY -= 1;
+                case "DOWN" -> newY += 1;
+                case "LEFT" -> newX -= 1;
+                case "RIGHT" -> newX += 1;
+            }
+
+            if (isValidMove(newX, newY)) {
+                move(direction);
+                hasMoved = true;
+                break;
+            }
+        }
+
+        if (!hasMoved) {
+            System.out.println("All paths are blocked. Shutting down.");
         }
     }
 }
