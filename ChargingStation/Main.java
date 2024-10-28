@@ -9,7 +9,7 @@ public class Main {
         int startX = 0, startY = 0;
 
         // Find the nearest charging station
-        Cell nearestChargingStation = floorPlan.findNearestChargingStation(startX, startY);
+        Cell nearestChargingStation = (Cell) floorPlan.findNearestChargingStation(startX, startY);
 
         if (nearestChargingStation != null) {
             System.out.println("Nearest charging station found at: (" + nearestChargingStation.getX() + ", " + nearestChargingStation.getY() + ")");
