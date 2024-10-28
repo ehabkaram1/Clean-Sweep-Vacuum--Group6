@@ -149,3 +149,34 @@ public class FloorTile implements Serializable {
   public boolean getChargeStation() {
     return chargingStation;
   }
+
+  public void print() {
+    System.out.println("My coordinates are " + _x + " , " + _y + "");
+    System.out.println("isClean " + isClean + " isChargingStation " + chargingStation);
+    System.out.println(" Units of Dirt " + unitsOfDirt + " surfaceType " + surfaceType);
+  }
+
+  public int get_x() {
+    return _x;
+  }
+
+  public int get_y() {
+    return _y;
+  }
+
+  public void decreaseDirtAmount() {
+    if (unitsOfDirt <= 1) {
+      unitsOfDirt = 0;
+      isClean = true;
+      return;
+    }
+    unitsOfDirt = unitsOfDirt - 1;
+    return;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Node: y:%d x:%d ", _y, _x);
+  }
+}
+
