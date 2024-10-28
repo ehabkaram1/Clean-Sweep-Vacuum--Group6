@@ -31,3 +31,50 @@ public class FloorTile implements Serializable {
   public FloorTile() {
     super();
   }
+
+  // Constructor
+  // will make floorplan a java object from xml, which will allow for these nodes to be inserted
+  public FloorTile(int y, int x) {
+    north = null;
+    south = null;
+    east = null;
+    west = null;
+    _x = x;
+    _y = y;
+
+    // Default values, will be an easy tile.
+    surfaceType = TileType.BARE;
+    isClean = true;
+    accessable = true;
+    chargingStation = false;
+    unitsOfDirt = 0;
+  }
+
+  public FloorTile(int y, int x, boolean isAccessable) {
+    north = null;
+    south = null;
+    east = null;
+    west = null;
+    _x = x;
+    _y = y;
+    accessable = isAccessable;
+  }
+
+  public FloorTile(int y, int x, int dirtAmount, TileType type) {
+    north = null;
+    south = null;
+    east = null;
+    west = null;
+    _x = x;
+    _y = y;
+    surfaceType = type;
+    unitsOfDirt = dirtAmount;
+    isClean = true;
+    if (unitsOfDirt > 0) {
+      isClean = false;
+    }
+
+    // Default values, will be an easy tile.
+    accessable = true;
+    chargingStation = false;
+  }
