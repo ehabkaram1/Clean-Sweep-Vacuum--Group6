@@ -29,4 +29,13 @@ public class CellNode {
     sideE = e;
   }
 
+  /*get (x, y)*/
+public int getCoordinateX() {
+    return coordinate[0];}
+  
+    public int getCoordinateY() {
+      return coordinate[1];
+    }
+  
+
 }
