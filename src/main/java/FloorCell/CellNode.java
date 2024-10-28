@@ -1,6 +1,5 @@
 package FloorCell;
 
-import FloorCell.*;;
 
 public class CellNode {
   private SideType sideN;
