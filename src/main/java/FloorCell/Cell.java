@@ -25,5 +25,8 @@ public class Cell {
     return surface;
   }
 
+  public void decreaseDirt() {
+    this.dirtAmount--;
+  }
   
 }
