@@ -1,2 +1,17 @@
 language: java
-jdk: openjdk10
+jdk:
+  - openjdk21  # Updated to match your Java 21 LTS version
+
+# Cache Maven dependencies for your workspace
+cache:
+  directories:
+    - /workspaces/ehabkaram1/.m2
+    - /workspaces/ehabkaram1/.m2/repository
+
+# Install dependencies
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+# Build and test
+script:
+  - mvn clean verify

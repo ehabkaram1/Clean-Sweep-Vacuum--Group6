@@ -1,6 +1,5 @@
 package MainControlSytstem;
 
-
 import BatteryPower.PowerConsumptionLog;
 import floorPlan.CustomLinkedList;
 import floorPlan.FloorTile;
@@ -149,7 +148,6 @@ public class Cleaner {
 
     return loopCheck;
   }
-
 
   private boolean checkNodeCleanAndVisited(FloorTile sensor) {
     boolean visitedAndCleaned = false;
@@ -362,11 +360,11 @@ public class Cleaner {
   private void teleportToNode(FloorTile node, boolean shouldClean) {
     this.prevNode = this.currNode;
     this.currNode = node;
+    System.out.println("\nMoving to " + printCoordinate());
     if (shouldClean) cleanSurface();
     currentMap[this.currNode._x][this.currNode._y] = this.currNode;
     cleanerHistory.add(this.currNode);
 
-    System.out.println("Moving to " + printCoordinate());
     // get average battery cost, log it, and subtract from battery total
     double averagePowerCost =
         (this.prevNode.getBatteryConsumption() + this.currNode.getBatteryConsumption()) / 2;
@@ -607,7 +605,11 @@ public class Cleaner {
     } else {
       // Add to vaccumbag
       this.currNode.decreaseDirtAmount(); // enforces 1 unit at a time
-      System.out.println("Cleaning 1 unit of dirt at " + this.printCoordinate());
+      System.out.println(
+          "Cleaning 1 unit of dirt at "
+              + this.printCoordinate()
+              + " Current Battery: "
+              + currBattery);
       pcl.logData("Cleaning", currNode, currNode, currBattery, currNode.getBatteryConsumption());
       currBattery -= currNode.getBatteryConsumption();
 
@@ -619,7 +621,7 @@ public class Cleaner {
 
     // checkign if the map is completely visited
     if (checkMapCleaningComplete()) {
-      
+
       cleaningComplete = true;
       FloorTile closest = this.getClosestCharging();
       if (closest != null) {

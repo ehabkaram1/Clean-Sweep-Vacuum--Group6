@@ -1,17 +1,16 @@
 package floorPlan;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class CustomLinkedList {
   private FloorTile head; // head of list
@@ -124,20 +123,20 @@ public class CustomLinkedList {
     int counter = 0; // used to tell what the current row is
 
     while (currRowHead != null) { // start on the first row then print what the current row is
-      System.out.printf("LinkedList Row %d: ", counter);
+      // System.out.printf("LinkedList Row %d: ", counter);
 
       // start at the head of the row and increment east while printing
       while (currNode != null) {
         // Print the coordinates at current node
-        System.out.print("(" + currNode._y + ", " + currNode._x + "); ");
-        System.out.print("accessibility : " + currNode.getAccessable() + " || ");
-        System.out.print(" charging stations : " + currNode.getChargeStation() + "||");
-        System.out.print("amount of dirt : " + currNode.getUnitsOfDirt() + " ||");
+        // System.out.print("(" + currNode._y + ", " + currNode._x + "); ");
+        // System.out.print("accessibility : " + currNode.getAccessable() + " || ");
+        // System.out.print(" charging stations : " + currNode.getChargeStation() + "||");
+        // System.out.print("amount of dirt : " + currNode.getUnitsOfDirt() + " ||");
         // Go to next node
         currNode = currNode.east;
       }
 
-      System.out.print("\n");
+      // System.out.print("\n");
       counter++; // increment counter after row is finished printing
       currRowHead = currRowHead.south; // advance to the next row
       currNode = currRowHead; // reset the current node to the head of the next row
@@ -307,9 +306,8 @@ public class CustomLinkedList {
       }
     }
 
-    this
-        .printList(); // used to test that a floor plan has been converted from xml to
-                      // customlinkedlist
+    this.printList(); // used to test that a floor plan has been converted from xml to
+    // customlinkedlist
     System.out.println(); // used as a separator
   }
 
