@@ -106,20 +106,8 @@
 					</archive>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.cosium.code</groupId>
-				<artifactId>maven-git-code-format</artifactId>
-				<version>${maven-git-code-format.version}</version>
-				<executions>
-					<!-- On commit, format the modified java files -->
-					<execution>
-						<id>install-formatter-hook</id>
-						<goals>
-							<goal>install-hooks</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			
+						
 		</plugins>
 	</build>
 </project>
